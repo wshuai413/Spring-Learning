@@ -46,4 +46,11 @@
 		<constructor-arg> <bean class="com.shiyanlou.spring.innerBean.Person"> <property 
 		name="name" value="shiyanlou" /> <property name="address" value="chengdu" 
 		/> <property name="age" value="25" /> </bean> </constructor-arg> </bean> -->
+		
+	<!-- 实验3.4 -->
+	<!-- 如果没有指定scope范围，默认情况下是singleton模式 -->
+	<!-- 
+	<bean id="CustomerService"  class="com.shiyanlou.spring.customer.services.CustomerService" />
+	 -->
+	<bean id="CustomerService"  class="com.shiyanlou.spring.customer.services.CustomerService" scope="prototype"/>
 </beans>
