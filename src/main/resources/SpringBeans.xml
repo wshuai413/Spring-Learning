@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
-    
-    <bean id="helloBean" class="com.shiyanlou.demo.helloworld.HelloWorld">
-    	<property name="name" value="shiyanlou" />
-    </bean>
-    
+	<!-- 实验楼Spring教程 实验2 -->
+	<bean id="helloBean" class="com.shiyanlou.demo.helloworld.HelloWorld">
+		<property name="name" value="shiyanlou" />
+	</bean>
+
+	<!-- 实验3 -->
+	<!-- 方法一 -->
+	<!-- 
+	<bean id="FileNameGenerator" class="com.shiyanlou.spring.bean.FileNameGenerator">
+		<property name="name">
+			<value>shiyanlou</value>
+		</property>
+		<property name="type">
+			<value>txt</value>
+		</property>
+	</bean>
+	 -->
+	 
+	<!-- 另一重配置方法 缩写方法 -->
+	<!-- 
+	<bean id="FileNameGenerator" class="com.shiyanlou.spring.bean.FileNameGenerator"> 
+		<property name="name" value="shiyanlou" /> 
+		<property name="type" value="txt" /> 
+	</bean> 
+	-->
+	
+	<!-- 使用p的方法 -->
+	<bean id="FileNameGenerator" class="com.shiyanlou.spring.bean.FileNameGenerator" 
+			p:name="shiyanlou" p:type="txt" /> 
 </beans>
