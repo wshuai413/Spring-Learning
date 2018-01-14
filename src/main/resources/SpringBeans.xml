@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<!-- 实验楼Spring教程 实验2 -->
@@ -11,26 +10,40 @@
 
 	<!-- 实验3 -->
 	<!-- 方法一 -->
-	<!-- 
-	<bean id="FileNameGenerator" class="com.shiyanlou.spring.bean.FileNameGenerator">
-		<property name="name">
-			<value>shiyanlou</value>
-		</property>
-		<property name="type">
-			<value>txt</value>
+	<!-- <bean id="FileNameGenerator" class="com.shiyanlou.spring.bean.FileNameGenerator"> 
+		<property name="name"> <value>shiyanlou</value> </property> <property name="type"> 
+		<value>txt</value> </property> </bean> -->
+
+	<!-- 另一重配置方法 缩写方法 -->
+	<!-- <bean id="FileNameGenerator" class="com.shiyanlou.spring.bean.FileNameGenerator"> 
+		<property name="name" value="shiyanlou" /> <property name="type" value="txt" 
+		/> </bean> -->
+
+	<!-- 使用p的方法 -->
+	<bean id="FileNameGenerator" class="com.shiyanlou.spring.bean.FileNameGenerator"
+		p:name="shiyanlou" p:type="txt" />
+
+	<!-- 3.3.3 编写 SpringBeans.xml -->
+	<!-- 接下来配置 Bean ，配置Bean时，要在 Customer 的 Bean 中注入内部 Bean ，即 Person 。三种方法： -->
+	<!-- 在 Customer 中，可以用 ref 属性引用 Person 的 Bean ，如下： -->
+	<!-- <bean id="CustomerBean" class="com.shiyanlou.spring.innerBean.Customer"> 
+		<property name="person" ref="PersonBean" /> </bean> <bean id="PersonBean" 
+		class="com.shiyanlou.spring.innerBean.Person"> <property name="name" value="shiyanlou" 
+		/> <property name="address" value="chengdu" /> <property name="age" value="25" 
+		/> </bean> -->
+	<!-- 最好的方法就是在 Customer 的 Bean 中声明一个内部 Bean ，如下: -->
+	<bean id="CustomerBean" class="com.shiyanlou.spring.innerBean.Customer">
+		<property name="person">
+			<bean class="com.shiyanlou.spring.innerBean.Person">
+				<property name="name" value="shiyanlou" />
+				<property name="address" value="chengdu" />
+				<property name="age" value="25" />
+			</bean>
 		</property>
 	</bean>
-	 -->
-	 
-	<!-- 另一重配置方法 缩写方法 -->
-	<!-- 
-	<bean id="FileNameGenerator" class="com.shiyanlou.spring.bean.FileNameGenerator"> 
-		<property name="name" value="shiyanlou" /> 
-		<property name="type" value="txt" /> 
-	</bean> 
-	-->
-	
-	<!-- 使用p的方法 -->
-	<bean id="FileNameGenerator" class="com.shiyanlou.spring.bean.FileNameGenerator" 
-			p:name="shiyanlou" p:type="txt" /> 
+	<!-- 内部Bean也可以通过构造函数注入 -->
+	<!-- <bean id="CustomerBean" class="com.shiyanlou.spring.innerBean.Customer"> 
+		<constructor-arg> <bean class="com.shiyanlou.spring.innerBean.Person"> <property 
+		name="name" value="shiyanlou" /> <property name="address" value="chengdu" 
+		/> <property name="age" value="25" /> </bean> </constructor-arg> </bean> -->
 </beans>
